@@ -70,7 +70,13 @@ def lambda_handler(event, context):
     json_data = {}
     json_data['task-id'] = result['task-id']
 
-    result = post(sid, ip, command, json_data)
+    outputs = post(sid, ip, command, json_data)
 
-    print (result)
-
+     # Send message to SNS
+    sns_arn = os.environ['SNS_ARN']
+    sns_client = boto3.client('sns')
+    sns_client.publish(
+    TopicArn = sns_arn,
+    Subject = 'Check Point Change Report',
+             Message = str(outputs)
+    )
