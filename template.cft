@@ -13,6 +13,18 @@ Parameters:
   Email:
     Type: String
     Description: Email Address for Notifications
+  MGMTHOSTNAME:
+    Type: String
+    Description: Address for Management Server
+    Default: i2-demo-mibraun--4w1ps5td.maas.checkpoint.com/77ec94de-2028-4e6d-9296-0567ec6dcaea
+  USER:
+    Type: String
+    Description: User for Management Server
+    Default: smart_task
+  PASSWORD:
+    Type: String
+    Description: Password for Management Server
+    
 
 Resources:
   LambdaIamRole:
@@ -52,6 +64,12 @@ Resources:
       Role: !GetAtt LambdaIamRole.Arn
       Runtime: python3.7
       Timeout: 50
+      Environment:
+        Variables:
+          MGMTHOSTNAME: !Ref MGMTHOSTNAME
+          USER: !Ref USER
+          PASSWORD: !Ref PASSWORD
+          SNS_ARN: !Ref SNSTopic
 
 
   ApiGatewayIamRole:
@@ -131,4 +149,10 @@ Resources:
       SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${apiGateway}/*/*/*"
         
  
-
+  SNSTopic:
+    Type: 'AWS::SNS::Topic'
+    Properties:
+      Subscription:
+        - Endpoint: !Ref Email
+          Protocol: email
+      TopicName: Notification

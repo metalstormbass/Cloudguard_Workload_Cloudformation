@@ -1,5 +1,7 @@
 import requests
 import json
+import os
+import boto3
 
 #remove https warning
 requests.packages.urllib3.disable_warnings()
