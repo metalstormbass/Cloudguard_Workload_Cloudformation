@@ -2,6 +2,7 @@ import requests
 import json
 import os
 import boto3
+import time
 
 #remove https warning
 requests.packages.urllib3.disable_warnings()
@@ -71,10 +72,10 @@ def lambda_handler(event, context):
     command = "show-task"
     json_data = {}
     json_data['task-id'] = result['task-id']
-
+    time.sleep(5)
     outputs = post(sid, ip, command, json_data)
 
-     # Send message to SNS
+    # Send message to SNS
     sns_arn = os.environ['SNS_ARN']
     sns_client = boto3.client('sns')
     sns_client.publish(
