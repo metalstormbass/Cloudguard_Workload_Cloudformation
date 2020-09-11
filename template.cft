@@ -12,6 +12,20 @@ Resources:
             Action:
               - 'sts:AssumeRole'
       Path: '/'
+      Policies:
+        - PolicyName: TerraformFunctionPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'tag:GetResources'
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                  - 'sns:*'
+                Resource: '*'
+  LambdaFunction:
  
   LambdaFunction:
     Type: 'AWS::Lambda::Function'
