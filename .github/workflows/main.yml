@@ -51,10 +51,10 @@ jobs:
                 Email: $EMAIL
                 PASSWORD: $TASK_PASSWORD
            Functions:
-            LambdaFunction:
-            CodeLocation: ./main
+             LambdaFunction:
+             CodeLocation: ./main
            # Only this function will override that value
-            ProtegoGeneratedRole: true
+             ProtegoGeneratedRole: true
           EOT
           cloudguard proact --input cloudguard.yml
           cloudguard proact -C ./template.cft -t $CG_TOKEN
