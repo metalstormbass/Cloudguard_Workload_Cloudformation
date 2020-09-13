@@ -12,8 +12,9 @@ jobs:
       working-directory: .
       CG_TOKEN: ${{ secrets.CG_TOKEN }}
       AWS_REGION: us-east-1
-      S3BUCKET: mikedevopsbucket
+      S3BUCKET: ${{ secrets.S3BUCKET }}
       TASK_PASSWORD: ${{ secrets.TASK_PASSWORD }}
+      EMAIL: ${{ secrets.EMAIL }}
     
     steps:
     - name: "Setup Node.js"
@@ -66,7 +67,7 @@ jobs:
       with:
         name: CPEMAILSMARTTASK
         template: template.protected.cft
-        parameter-overrides: "bucket=${S3BUCKET},PASSWORD=$TASK_PASSWORD"
+        parameter-overrides: "Bucket=$S3BUCKET,PASSWORD=$TASK_PASSWORD,Email=$EMAIL"
     
      
      
