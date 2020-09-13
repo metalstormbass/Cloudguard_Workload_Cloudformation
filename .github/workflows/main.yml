@@ -67,9 +67,9 @@ jobs:
        name: cloudguard_output.html
        path: ./cloudguard_output/CloudGuardScanReport.html
   
-    - name: Run Cloudguard Proact
+    - name: Run Cloudguard FSP
       run: |
-          cloudguard fsp add -C cloudformation_template_file_path --region ${AWS_REGION}
+          cloudguard fsp add -C template.cft --region ${AWS_REGION}
           ls
     
      
