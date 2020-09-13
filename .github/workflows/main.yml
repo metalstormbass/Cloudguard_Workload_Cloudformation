@@ -68,6 +68,7 @@ jobs:
         name: CPEMAILSMARTTASK
         template: template.protected.cft
         parameter-overrides: "Bucket=$S3BUCKET,PASSWORD=$TASK_PASSWORD,Email=$EMAIL"
+        capabilities:  CAPABILITY_IAM
     
      
      
