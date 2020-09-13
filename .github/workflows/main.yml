@@ -26,7 +26,7 @@ jobs:
     - name: Prep package.zip 
       run: |
           npm install -D https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
-          pip install virtualenv
+          apt-get install python3-venv
           python3 -m venv package
           source package/bin/activate
           pip install requests
