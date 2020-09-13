@@ -55,7 +55,7 @@ jobs:
                 Bucket: $S3BUCKET
                 Email: $EMAIL
                 PASSWORD: $TASK_PASSWORD
-              EOT
+            EOT
             cloudguard proact --input cloudguard.yml
             cloudguard proact -C ./template.cft -t $CG_TOKEN
     
