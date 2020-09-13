@@ -44,7 +44,19 @@ jobs:
           
     - name: Run Cloudguard Proact
       run: |
-          cloudguard proact -C ./template.cft -t $CG_TOKEN
+          touch cloudguard.yml
+          cat <<EOT >> ./cloudguard.yml
+          Integrations:
+            Cloudformation:
+              Template: ./template.cft
+              # Parameters that are needed in order to evaluate the cloudformation template
+              Parameters:
+                LambdaHandler: main.lambda_handler
+                Bucket: $S3BUCKET
+                Email: $EMAIL
+                PASSWORD: $TASK_PASSWORD
+              EOT
+            cloudguard proact -C ./template.cft -t $CG_TOKEN
     
     - name: Upload yml output
       uses: actions/upload-artifact@v2
@@ -61,7 +73,7 @@ jobs:
     - name: Run Cloudguard FSP
       run: |
           cloudguard fsp add -C ./template.cft --region ${AWS_REGION} -t $CG_TOKEN
-    
+            
     - name: Upload Protected CFT
       uses: actions/upload-artifact@v2
       with:
