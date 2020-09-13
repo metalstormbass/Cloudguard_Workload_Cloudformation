@@ -42,7 +42,7 @@ jobs:
           
     - name: Run Cloudguard Proact
       run: |
-          cloudguard proact -C template.cft -t $CG_TOKEN
+          cloudguard proact -C ./template.cft -t $CG_TOKEN
     
     - name: Upload yml output
       uses: actions/upload-artifact@v2
@@ -58,7 +58,7 @@ jobs:
   
     - name: Run Cloudguard FSP
       run: |
-          cloudguard fsp add -C template.cft --region ${AWS_REGION} -t $CG_TOKEN
+          cloudguard fsp add -C ./template.cft --region ${AWS_REGION} -t $CG_TOKEN
           ls
     
      
