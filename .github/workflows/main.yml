@@ -56,7 +56,7 @@ jobs:
            # Only this function will override that value
              ProtegoGeneratedRole: true
           EOT
-          cloudguard proact --input cloudguard.yml
+          cloudguard proact --input cloudguard.yml -t $CG_TOKEN
           cloudguard proact -C ./template.cft -t $CG_TOKEN
     
     - name: Upload yml output
