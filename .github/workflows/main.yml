@@ -45,7 +45,7 @@ jobs:
     - name: Run Cloudguard Proact
       run: |
           touch cloudguard.yml
-          cat <<EOT >> ./cloudguard.yml
+          cat << 'EOT' >> ./cloudguard.yml
           Integrations:
             Cloudformation:
               Template: ./template.cft
