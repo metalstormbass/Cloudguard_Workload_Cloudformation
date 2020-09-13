@@ -36,9 +36,7 @@ jobs:
     - name: Download Dependencies
       run: |
           npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
-          pip install awscli   
-
-  
+           
     - name: Run Cloudguard FSP
       run: |
           cloudguard fsp add -C ./template.cft --region ${AWS_REGION} -t $CG_TOKEN
@@ -53,7 +51,7 @@ jobs:
       run: |
            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
            unzip awscliv2.zip
-           ./aws/install 
+           sudo ./aws/install 
            aws cloudformation deploy --template-file ./template.protected.cft --stack-name CPTask --parameter-overrides Bucket=$S3BUCKET,PASSWORD=$TASK_PASSWORD,Email=$EMAIL --capabilities CAPABILITY_IAM
 
 
