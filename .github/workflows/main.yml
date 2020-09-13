@@ -57,7 +57,7 @@ jobs:
              ProtegoGeneratedRole: true
           EOT
           cloudguard proact --input cloudguard.yml -t $CG_TOKEN
-          cloudguard proact -C ./template.cft -t $CG_TOKEN
+          
     
     - name: Upload yml output
       uses: actions/upload-artifact@v2
