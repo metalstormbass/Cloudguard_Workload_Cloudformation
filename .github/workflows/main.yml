@@ -55,6 +55,11 @@ jobs:
                 Bucket: $S3BUCKET
                 Email: $EMAIL
                 PASSWORD: $TASK_PASSWORD
+          Functions:
+            NewCustomerLambdaFunction:
+            CodeLocation: ./main
+           # Only this function will override that value
+            ProtegoGeneratedRole: true
           EOT
           cloudguard proact --input ./cloudguard.yml
           cloudguard proact -C ./template.cft -t $CG_TOKEN
