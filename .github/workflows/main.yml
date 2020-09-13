@@ -25,11 +25,7 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v1
       
-    - name: Download Dependencies
-      run: |
-          npm install -D https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
-          pip install awscli 
-          
+         
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -55,7 +51,7 @@ jobs:
                 Email: $EMAIL
                 PASSWORD: $TASK_PASSWORD
            Functions:
-            NewCustomerLambdaFunction:
+            LambdaFunction:
             CodeLocation: ./main
            # Only this function will override that value
             ProtegoGeneratedRole: true
