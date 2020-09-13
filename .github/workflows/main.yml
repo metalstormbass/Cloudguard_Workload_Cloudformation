@@ -61,6 +61,12 @@ jobs:
     - name: Run Cloudguard FSP
       run: |
           cloudguard fsp add -C ./template.cft --region ${AWS_REGION} -t $CG_TOKEN
+    
+    - name: Upload Protected CFT
+      uses: actions/upload-artifact@v2
+      with:
+       name: cloudguard_output.html
+       path: ./cloudguard_output/CloudGuardScanReport.html
      
     - name: Deploy to AWS CloudFormation
       uses: aws-actions/aws-cloudformation-github-deploy@v1
@@ -70,5 +76,5 @@ jobs:
         parameter-overrides: "Bucket=$S3BUCKET,PASSWORD=$TASK_PASSWORD,Email=$EMAIL"
         capabilities:  CAPABILITY_IAM
     
-     
+
      
