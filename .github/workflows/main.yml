@@ -45,7 +45,7 @@ jobs:
     - name: Run Cloudguard Proact
       run: |
           touch cloudguard.yml
-          cat << 'EOT' >> ./cloudguard.yml
+          cat <<EOT >> ./cloudguard-config.json
           Integrations:
             Cloudformation:
               Template: ./template.cft
@@ -55,9 +55,9 @@ jobs:
                 Bucket: $S3BUCKET
                 Email: $EMAIL
                 PASSWORD: $TASK_PASSWORD
-            EOT
-            cloudguard proact --input cloudguard.yml
-            cloudguard proact -C ./template.cft -t $CG_TOKEN
+          EOT
+          cloudguard proact --input ./cloudguard.yml
+          cloudguard proact -C ./template.cft -t $CG_TOKEN
     
     - name: Upload yml output
       uses: actions/upload-artifact@v2
