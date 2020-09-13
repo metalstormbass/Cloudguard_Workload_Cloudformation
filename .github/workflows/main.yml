@@ -44,7 +44,7 @@ jobs:
     - name: Upload Protected CFT
       uses: actions/upload-artifact@v2
       with:
-       name: cloudguard_output.html
+       name: template.protected.cft
        path: ./template.protected.cft
    
     - name: Deploy to AWS
