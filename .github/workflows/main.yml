@@ -23,18 +23,6 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v1
       
-    - name: Prep package.zip 
-      run: |
-          npm install -D https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
-          sudo apt-get install python3-venv
-          python3 -m venv package
-          source package/bin/activate
-          pip install requests
-          cd package/lib/python3.8/site-packages
-          zip -r9 ${OLDPWD}/package.zip .
-          cd $OLDPWD
-          zip -g package.zip main.py
-
     - name: Download Dependencies
       run: |
           npm install -D https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
