@@ -72,7 +72,7 @@ def lambda_handler(event, context):
     command = "show-task"
     json_data = {}
     json_data['task-id'] = result['task-id']
-    time.sleep(5)
+    time.sleep(2)
     outputs = post(sid, ip, command, json_data)
 
     # Send message to SNS
@@ -81,5 +81,5 @@ def lambda_handler(event, context):
     sns_client.publish(
     TopicArn = sns_arn,
     Subject = 'Check Point Change Report',
-             Message = str(outputs)
+             Message = json.dumps(outputs, sort_keys=True, indent=4)
     )
