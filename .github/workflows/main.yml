@@ -48,14 +48,15 @@ jobs:
       with:
        name: cloudguard_output.html
        path: ./template.protected.cft
-     
-    - name: Deploy to AWS CloudFormation
-      uses: aws-actions/aws-cloudformation-github-deploy@v1
-      with:
-        name: CPEMAILSMARTTASK
-        template: template.protected.cft
-        parameter-overrides: "Bucket=$S3BUCKET,PASSWORD=$TASK_PASSWORD,Email=$EMAIL"
-        capabilities:  CAPABILITY_IAM
+   
+    - name: Deploy to AWS
+      run: |
+           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+           unzip awscliv2.zip
+           ./aws/install 
+           aws cloudformation deploy --template-file ./template.protected.cft --stack-name CPTask --parameter-overrides Bucket=$S3BUCKET,PASSWORD=$TASK_PASSWORD,Email=$EMAIL --capabilities CAPABILITY_IAM
+
+
     
 
      
