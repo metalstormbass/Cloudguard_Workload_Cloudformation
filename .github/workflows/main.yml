@@ -13,6 +13,7 @@ jobs:
       CG_TOKEN: ${{ secrets.CG_TOKEN }}
       AWS_REGION: us-east-1
       S3BUCKET: mikedevopsbucket
+      TASK_PASSWORD: ${{ secrets.TASK_PASSWORD }}
     
     steps:
     - name: "Setup Node.js"
@@ -42,7 +43,6 @@ jobs:
           
     - name: Run Cloudguard Proact
       run: |
-          ls
           cloudguard proact -C ./template.cft -t $CG_TOKEN
     
     - name: Upload yml output
@@ -60,7 +60,13 @@ jobs:
     - name: Run Cloudguard FSP
       run: |
           cloudguard fsp add -C ./template.cft --region ${AWS_REGION} -t $CG_TOKEN
-          ls
+     
+    - name: Deploy to AWS CloudFormation
+      uses: aws-actions/aws-cloudformation-github-deploy@v1
+      with:
+        name: CPEMAILSMARTTASK
+        template: template.protected.cft
+        parameter-overrides: "bucket=${S3BUCKET},PASSWORD=$TASK_PASSWORD
     
      
      
