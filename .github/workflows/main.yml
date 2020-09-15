@@ -53,6 +53,7 @@ jobs:
            # Only this function will override that value
              ProtegoGeneratedRole: true
           EOT
+          cat cloudguard.yml
           cloudguard proact -i ./cloudguard.yml -t $CG_TOKEN    
           
     - name: Run Cloudguard FSP
