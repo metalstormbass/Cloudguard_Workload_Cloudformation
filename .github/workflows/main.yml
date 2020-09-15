@@ -47,13 +47,13 @@ jobs:
                 Bucket: $S3BUCKET
                 Email: $EMAIL
                 PASSWORD: $TASK_PASSWORD
-           Functions:
-             LambdaFunction:
-             CodeLocation: ./main
+          Functions:
+            LambdaFunction:
+            CodeLocation: ./main
            # Only this function will override that value
-             ProtegoGeneratedRole: true
+            ProtegoGeneratedRole: true
           EOT
-          cat cloudguard.yml
+          cat ./cloudguard.yml
           cloudguard proact -i ./cloudguard.yml -t $CG_TOKEN    
           
     - name: Run Cloudguard FSP
