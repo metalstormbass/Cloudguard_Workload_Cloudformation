@@ -50,7 +50,7 @@ jobs:
                 PASSWORD: $TASK_PASSWORD
           Functions:
             LambdaFunction:
-            CodeLocation: ./main.py
+            CodeLocation: main.py
            # Only this function will override that value
             ProtegoGeneratedRole: true
           EOT
