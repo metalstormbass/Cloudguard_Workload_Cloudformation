@@ -53,7 +53,6 @@ jobs:
            # Only this function will override that value
             ProtegoGeneratedRole: true
           EOT
-          cat ./cloudguard.yml
           cloudguard proact -i ./cloudguard.yml -t $CG_TOKEN    
           
     - name: Run Cloudguard FSP
@@ -72,8 +71,3 @@ jobs:
            unzip awscliv2.zip
            sudo ./aws/install 
            aws cloudformation deploy --template-file ./template.protected.cft --stack-name CPTask --parameter-overrides Bucket=$S3BUCKET PASSWORD=$TASK_PASSWORD Email=$EMAIL --capabilities CAPABILITY_IAM
-
-
-    
-
-     
