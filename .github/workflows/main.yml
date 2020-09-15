@@ -53,7 +53,19 @@ jobs:
            # Only this function will override that value
             ProtegoGeneratedRole: true
           EOT
-          cloudguard proact -i ./cloudguard.yml -t $CG_TOKEN    
+          cloudguard proact -i ./cloudguard.yml -t $CG_TOKEN 
+   
+    - name: Upload yml output
+      uses: actions/upload-artifact@v2
+      with:
+        name: cloudguard_output.yml
+        path: ./cloudguard_output/CloudGuardScanResults.yaml
+   
+    - name: Upload html output
+      uses: actions/upload-artifact@v2
+      with:
+       name: cloudguard_output.html
+       path: ./cloudguard_output/CloudGuardScanReport.html   
           
     - name: Run Cloudguard FSP
       run: |
