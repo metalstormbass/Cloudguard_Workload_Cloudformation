@@ -37,6 +37,7 @@ jobs:
           npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
     - name: Run Cloudguard Proact
       run: |
+          ls
           touch cloudguard.yml
           cat <<EOT >> ./cloudguard.yml
           Integrations:
