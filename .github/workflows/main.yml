@@ -37,7 +37,22 @@ jobs:
           npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
     - name: Run Cloudguard Proact
       run: |
-          
+          touch cloudguard.yml
+          cat <<EOT >> ./cloudguard.yml
+          Integrations:
+            Cloudformation:
+              Template: ./template.cft
+              Parameters:
+                LambdaHandler: main.lambda_handler
+                Bucket: $S3BUCKET
+                Email: $EMAIL
+                PASSWORD: $TASK_PASSWORD
+           Functions:
+             LambdaFunction:
+             CodeLocation: ./main
+           # Only this function will override that value
+             ProtegoGeneratedRole: true
+          EOT
           cloudguard proact -C ./template.cft -t $CG_TOKEN    
           
     - name: Run Cloudguard FSP
