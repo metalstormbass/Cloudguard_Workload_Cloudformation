@@ -59,8 +59,8 @@ jobs:
     - name: Upload yml output
       uses: actions/upload-artifact@v2
       with:
-        name: LambdaFunction.yaml
-        path: ./cloudguard_output/LambdaFunction.yaml
+        name: cloudguard_output.yml
+        path: ./cloudguard_output/CloudGuardScanResults.yaml
    
     - name: Upload html output
       uses: actions/upload-artifact@v2
