@@ -14,7 +14,7 @@ The procedure outline below assumes that you have basic working knowdledge of AW
 
 [Github Account](https://github.com) <br>
 [AWS Account](https://aws.amazon.com) with API keys <br>
-     With the AWS CLI installed
+     With the AWS CLI installed <br>
 [Check Point Cloud Security Posture Management Account](https://dome9.com/) with API keys<bt>
     
 ## Prepare the AWS Environment
