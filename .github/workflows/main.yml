@@ -48,6 +48,7 @@ jobs:
                 Bucket: $S3BUCKET
                 Email: $EMAIL
                 PASSWORD: $TASK_PASSWORD
+                MGMTHOSTNAME: $MGMTHOSTNAME
           Functions:
             LambdaFunction:
             CodeLocation: ./main
