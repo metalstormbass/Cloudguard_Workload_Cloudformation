@@ -67,8 +67,12 @@ jobs:
       S3BUCKET: ${{ secrets.S3BUCKET }}
       TASK_PASSWORD: ${{ secrets.TASK_PASSWORD }}
       EMAIL: ${{ secrets.EMAIL }}
+      MGMTHOSTNAME: ${{ secrets.MGMTHOSTNAME }}
 ```
 In this case we are using Github Secrets to store the credentials. <br>
+
+Note: The MGMTHOSTNAME must not have the https:// in front of it. <br>
+
 
 The first three jobs download the dependencies:
 
