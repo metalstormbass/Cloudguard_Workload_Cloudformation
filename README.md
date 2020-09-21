@@ -35,7 +35,7 @@ Ensure that you have onboarded the AWS account in question. I've written a scrip
 
 Once onboarded, enable the serverless functionality in Cloudguard Security and Posture Management.
 
-![](images/cpsm.png)
+![](images/d91.png)
 
 
 ## Setting up the CI/CD Pipeline with 
@@ -183,4 +183,4 @@ Then in AWS, you will see the added layer to the Lambda Function:
 
 And finally in Clouguard Security and Posture Management:
 
-![](images/cspm.png)
+![](images/cpsm.png)
