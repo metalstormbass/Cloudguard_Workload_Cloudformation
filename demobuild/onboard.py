@@ -8,6 +8,18 @@ import string
 import time
 from random import *
 from requests.auth import HTTPBasicAuth
+from base64 import b64encode
+from nacl import encoding, public
+
+#Encryption for Github Secrets
+
+def encrypt(public_key: str, secret_value: str) -> str:
+    """Encrypt a Unicode string using the public key."""
+    public_key = public.PublicKey(public_key.encode("utf-8"), encoding.Base64Encoder())
+    sealed_box = public.SealedBox(public_key)
+    encrypted = sealed_box.encrypt(secret_value.encode("utf-8"))
+    return b64encode(encrypted).decode("utf-8")
+
 
 #Prompt User for information
 #Dome9
@@ -19,7 +31,7 @@ access_key = input('AWS Access Key: ')
 aws_secret_key = getpass.getpass('AWS Secret Key: ')
 aws_account_name =input('Friendly name of AWS account for Dome9: ')
 region = "us-east-1"
-bucket_name = "mikedevopsbucket"
+bucket_name = input('Name of S3 Bucket to create: ') #"mikedevopsbucket"
 
 #Gather Policy Name
 read_policy = 'dome9-readonly-policy'
@@ -229,16 +241,12 @@ response = requests.post(url, auth=HTTPBasicAuth(dome9_api_key, dome9_api_secret
 print (response.content)
 
 #Create Bucket
-try:
-    s3_client = boto3.client('s3')
-    s3_client.create_bucket(Bucket=bucket_name)
-except:
-    print ("Something went wrong with the S3 Bucket Creation")
+s3_client = boto3.client('s3', aws_access_key_id=access_key,
+    aws_secret_access_key=aws_secret_key,)
+s3_client.create_bucket(Bucket=bucket_name)
 
-    
-#Upload File
-s3.upload_file(
-    './package.zip', bucket_name , 'package.zip',
-    ExtraArgs={'ACL': 'public-read'}
-)
+
+ #Upload File
+s3_client.upload_file('./package.zip', bucket_name, 'package.zip', ExtraArgs={'ACL': 'public-read'})
+
 
