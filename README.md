@@ -183,4 +183,4 @@ Then in AWS, you will see the added layer to the Lambda Function:
 
 And finally in Clouguard Security and Posture Management:
 
-![](images/cspm.png)
+![](images/cpsm.png)

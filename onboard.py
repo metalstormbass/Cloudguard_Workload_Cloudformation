@@ -247,6 +247,6 @@ s3_client.create_bucket(Bucket=bucket_name)
 
 
  #Upload File
-s3_client.upload_file('./package.zip', bucket_name, 'package.zip', ExtraArgs={'ACL': 'public-read'})
+s3_client.upload_file('../package.zip', bucket_name, 'package.zip', ExtraArgs={'ACL': 'public-read'})
 
 
