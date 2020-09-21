@@ -35,7 +35,7 @@ Ensure that you have onboarded the AWS account in question. I've written a scrip
 
 Once onboarded, enable the serverless functionality in Cloudguard Security and Posture Management.
 
-![](images/d91.png)
+![](images/cpsm.png)
 
 
 ## Setting up the CI/CD Pipeline with 
