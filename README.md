@@ -189,6 +189,14 @@ And finally in Clouguard Security and Posture Management:
 ## Testing
 If you would like to test this script, there are two methods. One is to create a smart task with a webhook and point it towards the API gateway. <br><br>
 
+To do this, open Smart Console and select "Manage & Settings" and select "Smart Task"
+
+![](images/smarttask.png)
+
+Then, create a new Smart Task and point it towards the API gateway using the web hook action. This task was intended to be run as a post-publish task
+
+![](images/smarttask1.png)
+
 The other method is to use the activity.py script and provide the URL of the API gateway. Note, make sure you don't confirm the subscription of your email if you want to use this as it will send you 1000 emails.
 
 ## Final Remarks
