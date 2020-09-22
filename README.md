@@ -184,3 +184,12 @@ Then in AWS, you will see the added layer to the Lambda Function:
 And finally in Clouguard Security and Posture Management:
 
 ![](images/cpsm.png)
+
+
+## Testing
+If you would like to test this script, there are two methods. One is to create a smart task with a webhook and point it towards the API gateway. <br><br>
+
+The other method is to use the activity.py script and provide the URL of the API gateway. Note, make sure you don't confirm the subscription of your email if you want to use this as it will send you 1000 emails.
+
+## Final Remarks
+If you want to change the code of the lamba function, you must update the package.zip. Please see the instructions outline [HERE](https://dev.to/razcodes/how-to-create-a-lambda-using-python-with-dependencies-4846)
